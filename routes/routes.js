@@ -34,7 +34,7 @@ var checkAuthorization = function(req, res, next){
 
 // webhook fulfillment end point for dialogflow
 
-router.post('/',  checkAuthorization, function (req, res) {		
+router.post('/webhook',  checkAuthorization, function (req, res) {		
 	console.log(JSON.stringify(req.body));
 	processRequest.flightBookOrCancel(req.body)				
 	.then(function(result){															
