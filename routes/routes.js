@@ -14,6 +14,7 @@ var responses		= require('./../responses/response.js');
 // middleware function for check request came from authorized source(dialogflow) or not.
 var checkAuthorization = function(req, res, next){
 	//console.log(req.headers,req.body);
+	console.log(authCode, process.env.dialogFlowKey);
 	if(req.headers.authorization){
 		var authCode = req.headers.authorization.replace("Bearer ","");			
 		if(authCode == process.env.dialogFlowKey){
