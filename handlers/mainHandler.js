@@ -62,7 +62,7 @@ mainHandler.flightBooking = function(reqBody){
 			}]
 		}else{
 			response={
-				simpleText = [{
+				simpleText : [{
 					"text":"Sorry Currently flight not available from "+params.departure + " to "+params.destination,
 					"speech":"Sorry Currently flight not available from "+params.departure + " to "+params.destination
 				}],
