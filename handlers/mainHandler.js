@@ -50,8 +50,8 @@ mainHandler.flightBooking = function(reqBody){
 		}else if(params.destination.length<=0){
 			response = {
 				simpleText:[{
-					text:"Please select departure?",
-					speech:"Please select departure?"
+					text:"Please select destination?",
+					speech:"Please select destination?"
 				}],
 				chips:[]
 			}
