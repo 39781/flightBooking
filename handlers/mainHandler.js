@@ -162,6 +162,12 @@ mainHandler.flightBooking = function(reqBody){
 		resolve({src:reqBody.originalDetectIntentRequest.source,resp:response});
 	})
 }
+
+mainHandler.flightBookingInformation = function(reqBody){
+	return new Promise((resolve, reject)=>{
+		console.log(JSON.stringify(reqBody.outputContexts));
+	});
+}
 function dateConvert(cdate) {
 
     if(cdate.indexOf('/')&&cdate.length<=10){
