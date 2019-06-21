@@ -46,7 +46,7 @@ mainHandler.flightBooking = function(reqBody){
 					postback:flight.From
 				})
 			}
-		}else if(params.dateOfTravel.length<=0){
+		}else if(params.destination.length<=0){
 			response = {
 				simpleText:[{
 					text:"Please select departure?",
@@ -55,13 +55,16 @@ mainHandler.flightBooking = function(reqBody){
 				chips:[]
 			}
 			for(let flight of flightsInfo){	
-				response.chips.push({
-					title:flight.From,
-					type:"",
-					postback:flight.From
-				})
+				if(params.departure != flight.To){
+					response.chips.push({
+						title:flight.To,
+						type:"",
+						postback:flight.To
+					})
+				}
 			}
 		}else {
+			console.log("getting flights information");
 			for(let i in flightsInfo){
 			
 				if(flightsInfo[i].From  == params.departure&&flightsInfo[i].To == params.destination){
