@@ -86,8 +86,9 @@ mainHandler.flightBooking = function(reqBody){
 					items:[]
 				}
 				for(let flight of flightsInfo){
+				//	console.log(flight);
 					let key = "Flight No : "+flight["Flight No"]+",\r\n  \n"+params.departure + " - "+params.destination;
-					items.push({								  
+					response.list.items.push({								  
 						"postback": key ,
 						"synonyms": [
 							key
