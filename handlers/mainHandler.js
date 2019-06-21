@@ -64,7 +64,7 @@ mainHandler.flightBooking = function(reqBody){
 					})
 				}
 			}
-		}  if(params.filterCriteria.length<=0){
+		} else if(params.filterCriteria.length<=0){
 			response = {
 				simpleText:[{
 					text:"Please choose which type of flights you are looking?",
