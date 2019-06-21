@@ -37,7 +37,7 @@ var checkAuthorization = function(req, res, next){
 // webhook fulfillment end point for dialogflow
 
 router.post('/webhook',  checkAuthorization, function (req, res) {		
-	console.log(JSON.stringify(req.body));
+	//console.log(JSON.stringify(req.body));
 	processRequest.process(req.body)				
 	.then(function(result){															
 		return responses[result.src].generateResponse(result.resp);				 																					// from generic response

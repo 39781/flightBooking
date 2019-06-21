@@ -125,7 +125,7 @@ mainHandler.flightBooking = function(reqBody){
 			}
 		}
 		console.log(JSON.stringify(response))
-		resolve({src:reqBody.originalDetectIntentRequest.source,resp:response);
+		resolve({src:reqBody.originalDetectIntentRequest.source,resp:response});
 	})
 }
 module.exports = mainHandler
