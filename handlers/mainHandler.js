@@ -69,6 +69,7 @@ mainHandler.flightBooking = function(reqBody){
 			for(let i in flightsInfo){
 				console.log(flightsInfo[i].From  , params.departure,flightsInfo[i].To ,params.destination)
 				if(flightsInfo[i].From  != params.departure&&flightsInfo[i].To != params.destination){
+					console.log('hari');
 					flightsInfo.splice(i,1);
 				}
 			}
