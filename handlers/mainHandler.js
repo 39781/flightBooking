@@ -7,6 +7,7 @@ var mainHandler = {};
 // function to get user session from redis
 mainHandler.process = function(reqBody){
 	return new Promise((resolve, reject)=>{
+		console.log('action',reqBody.queryResult.action);
 		mainHanler[reqBody.queryResult.action](reqBody)
 		.then((resp)=>{
 			resolve(resp);
