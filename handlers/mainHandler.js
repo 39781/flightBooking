@@ -9,23 +9,18 @@ mainHandler.process = function(reqBody){
 	return new Promise((resolve, reject)=>{
 		mainHanler[reqBody.queryResult.action](reqBody)
 		.then((resp)=>{
-
+			resolve(resp);
 		})
 		.catch((err)=>{
-
+			reject(err);
 		})
 	})
 }
 
 mainHandler.flightBooking = function(reqBody){
 	return new Promise((resolve, reject)=>{
-			
-		let response = {
-			simpleText:[{
-				text:"Please select flight to book?",
-				speech:"Please select flight to book?"
-			}]
-		}
+			console.log('insode flight Booking');
+		let response = {};
 		let flightsInfo = [...config.flightDetails];
 		let params = reqBody.queryResult.parameters;
 		if(params.dateOfTravel.length<=0){
