@@ -77,14 +77,18 @@ mainHandler.flightBooking = function(reqBody){
 			}
 			console.log(flightsInfo.length);
 			if(flightsInfo.length>1){
+				response.simpleText=[{
+					text:"Please select flight to book?",
+					speech:"Please select flight to book?"
+				}],
 				response.list = {
 					title:"List of flight available from "+params.departure + " to "+params.destination,
 					items:[]
 				}
 				for(let flight of flightsInfo){
-					let key = params.departure + " - "+params.destination;
+					let key = "Flight No : "+flight["Flight No"]+",\r\n  \n"+params.departure + " - "+params.destination;
 					items.push({								  
-						"postback": key,
+						"postback": key ,
 						"synonyms": [
 							key
 						],
@@ -94,8 +98,12 @@ mainHandler.flightBooking = function(reqBody){
 					})
 				}
 			}else if(flightsInfo.length){
+				response.simpleText=[{
+					text:"Please select flight to book?",
+					speech:"Please select flight to book?"
+				}],
 				response.card ={			
-						"title": "flight available from "+params.departure + " to "+params.destination,
+						"title": "flight available from "+params.departure + " to "+params.destination+ ", Flight No : "+flight["Flight No"],
 						"formattedText": "Click below chip to book flight ",
 				}
 				response.chips=[{
