@@ -65,12 +65,16 @@ mainHandler.flightBooking = function(reqBody){
 				}
 			}
 		}else {
+
 			console.log("getting flights information");
+			console.log(flightsInfo.length);
 			for(let i in flightsInfo){
-				console.log(flightsInfo[i].From  , params.departure,flightsInfo[i].To ,params.destination)
+				
+				//console.log(flightsInfo[i].From  , params.departure,flightsInfo[i].To ,params.destination)
 				if(flightsInfo[i].From  != params.departure&&flightsInfo[i].To != params.destination){
 					console.log('hari');
 					flightsInfo.splice(i,1);
+					console.log(flightsInfo);
 				}
 			}
 			console.log(flightsInfo.length);
