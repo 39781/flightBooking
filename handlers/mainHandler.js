@@ -4,8 +4,10 @@ var mainHandler = {};
 
 
 // function to get user session from redis
-mainHandler.flightBookOrCancel = function(reqBody){
+mainHandler.process = function(reqBody){
+	return new Promise((resolve, reject)=>{
 
+	})
 }
 
 
