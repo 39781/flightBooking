@@ -70,11 +70,11 @@ mainHandler.flightBooking = function(reqBody){
 			console.log(flightsInfo.length);
 			for(let i in flightsInfo){
 				
-				//console.log(flightsInfo[i].From  , params.departure,flightsInfo[i].To ,params.destination)
+				
 				if(flightsInfo[i].From  != params.departure&&flightsInfo[i].To != params.destination){
-					console.log('hari');
+					console.log(flightsInfo[i].From  , params.departure,flightsInfo[i].To ,params.destination);
+
 					flightsInfo.splice(i,1);
-					console.log(flightsInfo);
 				}
 			}
 			console.log(flightsInfo.length);
