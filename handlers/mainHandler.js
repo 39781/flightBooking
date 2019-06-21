@@ -124,8 +124,8 @@ mainHandler.flightBooking = function(reqBody){
 				response.contextOut = reqBody.queryResult.outputContexts;
 			}
 		}
-		
-		resolve(response);
+		console.log(JSON.stringify(response))
+		resolve({src:reqBody.originalDetectIntentRequest.source,resp:response);
 	})
 }
 module.exports = mainHandler
