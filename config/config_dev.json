@@ -1,0 +1,98 @@
+{	"domain":"https://df8qy9srl5.execute-api.us-east-1.amazonaws.com/V1",
+	"apiDomain":"https://df8qy9srl5.execute-api.us-east-1.amazonaws.com/V1",
+	"authorizeEndpoint":"https://login.microsoftonline.com/hexawareonline.onmicrosoft.com/oauth2/v2.0/authorize",
+	"tokenEndpoint":"https://login.microsoftonline.com/hexawareonline.onmicrosoft.com/oauth2/v2.0/token",	
+	"redirect_uri":"https://df8qy9srl5.execute-api.us-east-1.amazonaws.com/V1/authorize/generatetoken",
+	"redirect_uri1":"https://df8qy9srl5.execute-api.us-east-1.amazonaws.com/V1/authorize/generatetoken",
+	"repuri":"http://ec2-54-152-73-118.compute-1.amazonaws.com%2F3000",
+	"resource":"https://graph.windows.net",
+	"issuer" : "https://sts.windows.net/7c0c36f5-af83-4c24-8844-9962e0163719",
+	"grant_type":"authorization_code",
+	"state":12345,		
+	"masterScope":"fc458f80-5b1e-4674-9f87-a605c5b49720/.default",
+	"userSesControl":"redis",
+	"validSources":["artwebview","msteams","google"],
+	"reloginDuration":10,
+	"scope":"openid profile offline_access Calendars.Read Calendars.ReadWrite",
+	"nonce":882773,
+	"jwksUri" : "https://login.microsoftonline.com/hexawareonline.onmicrosoft.com/discovery/v2.0/keys",
+	"graphApi" :"https://graph.microsoft.com/v1.0/me/",	
+	"algorithm":["RS256"],
+	"loginHomeUrl": "http://ec2-54-152-73-118.compute-1.amazonaws.com:3000/login.html?ur=",	
+	"botAvatar" : "avatar/macy.jpg",	
+    "apiServer":{
+        "login":    {
+            "workday":"",
+            "peoplesoft":"http://ec2-54-152-73-118.compute-1.amazonaws.com:3000/login?cid="
+        },
+        "logMeOut":{
+            "customMsg":"You have been logged out successfully. Have a great day"
+        },
+        "authenticate":{
+            "workday":"http://localhost:3002/authenticateWDUser",
+            "peoplesoft":"http://localhost:3001/authenticatePSUser"
+        },        
+		"microServices":{
+			"wrk":"http://localhost:3002/",
+			"ps":"http://localhost:3001/",			
+			"ps_jedox":"http://localhost:2001/",
+			"cal":"http://localhost:3002/",
+			"getEmpDetails":"http://localhost:3001/getEmployeeDetails",
+			"getEmpDetails_Jedox":"http://localhost:2001/getEmployeeDetails",
+			"art":"http://localhost:3003/",
+			"itsm":"http://localhost:3004/",
+			"at":"http://localhost:3005/",
+			"cab":"http://localhost:3006/"			
+		}
+    },
+	"intents":{
+		"_wrk":"wrk",
+		"_ps":"ps",
+		"_art":"art",
+		"_meet":"cal",
+		"_itsm":"itsm",
+		"_at":"at",
+		"_cab":"cab",
+		"chatServer":["ReportIssue","Feedback","mainMenu","Default Welcome Intent","Default Fallback Intent","BotCapabilities","logout","ThankYou","ThankYouYes","ThankYouNo","sign_In"]
+	},
+	"healthCheck":{
+		"ps":"HR Assistant",
+		"art":"Password Assistant",
+		"at":"Attendance Tracker",
+		"cab": "Cab Assistant",
+		"cal":"Calendar Assistant",
+		"itsm":"Genie+"
+	},
+	"excludeHealthChk":{
+		"services":["chatServer","cab","itsm"],
+		"intents":["psMainIntent"]
+	},
+	"resourceScope":{		
+		"ps":"api://2b75e93a-75eb-4b24-948a-83569d84d3b7/Leave.SelfService",
+		"cal":"https://graph.microsoft.com/.default",
+		"at":"api://2b75e93a-75eb-4b24-948a-83569d84d3b7/Leave.SelfService",
+		"cab":"api://2b75e93a-75eb-4b24-948a-83569d84d3b7/Leave.SelfService",
+		"itsm":"api://f9cfab2f-66ed-46c9-8e02-511eb5098a5b/Genie+"				 				
+	},
+    "customMessage":{
+        "logMeOut":{
+            "textToSpeech":"You have been logged out successfully. Have a great day",
+            "displayText":"You have been logged out successfully. Have a great day"
+        },
+        "fallback":{
+            "textToSpeech":"Please Try again after sometime",
+            "displayText":"Please Try again after sometime"
+        }
+    },
+	"responseObj" : {
+	  "data": {
+		"google": {			
+		  "expectUserResponse": true,
+		  "richResponse": {
+			"items": [],
+			"suggestions":[]
+		  }		 
+		}
+	  }
+	}
+}
