@@ -64,14 +64,35 @@ mainHandler.flightBooking = function(reqBody){
 					})
 				}
 			}
+		}  if(params.filterCriteria.length<=0){
+			response = {
+				simpleText:[{
+					text:"Please choose which type of flights you are looking?",
+					speech:"Please choose which type of flights you are looking?"
+				}],
+				chips:[{
+					title:"Cheaper",
+					type:"",
+					postback:"Cheaper"
+				},
+				{
+					title:"Fastest",
+					type:"",
+					postback:"Fastest"
+				},
+				{
+					title:"All",
+					type:"",
+					postback:"All"
+				}
+			]}
 		}else {
 
 			console.log("getting flights information");
 			flightsInfo = [];
+			params.dateOfTravel = dateConvert(params.dateOfTravel);
 			for(let i in flightsDetails){
-				
-				
-				if(flightsDetails[i].From  == params.departure&&flightsDetails[i].To == params.destination){
+				if(params.dateOfTravel == flightsDetails[i].Date&&flightsDetails[i].From  == params.departure&&flightsDetails[i].To == params.destination){
 					flightsInfo.push(flightsDetails[i]);
 				}
 			}
@@ -87,14 +108,14 @@ mainHandler.flightBooking = function(reqBody){
 				}
 				for(let flight of flightsInfo){
 				//	console.log(flight);
-					let key = "Flight No : "+flight["Flight No"]+",\r\n  \n"+params.departure + " - "+params.destination;
+					let key = "Flight No : "+flight["Flight No"]+",\r\n  \n"+flight["Airlines"]
 					response.list.items.push({								  
 						"postback": key ,
 						"synonyms": [
 							key
 						],
 						"title": key,					  
-						"subTitle": "Click to Book",
+						"subTitle": "Connection : "+flight["Connection"]+"\r\n  \nClick to Book",
 						//Location : "+body.value[0].location.displayName+" Date : "+startDate.toLocaleDateString()+"  \nStart Time : "+startDate.toLocaleTimeString()+"  \nEnd Time : "+endDate.toLocaleTimeString()+"  \nLocation : " +meeting.location.displayName
 					})
 				}
@@ -108,9 +129,9 @@ mainHandler.flightBooking = function(reqBody){
 						"formattedText": "Click below chip to book flight ",
 				}
 				response.chips=[{
-					title:"Click to Book",
+					title:"Click to Book flight no : "+flightsInfo["Flight No"],
 					type:"",
-					postback:"Click to Book"
+					postback:"Click to Book flignt no : "+flightsInfo["Flight No"]
 				}]
 			}else{
 				response={
@@ -140,5 +161,21 @@ mainHandler.flightBooking = function(reqBody){
 		console.log(JSON.stringify(response))
 		resolve({src:reqBody.originalDetectIntentRequest.source,resp:response});
 	})
+}
+function dateConvert(cdate) {
+
+    if(cdate.indexOf('/')&&cdate.length<=10){
+        return cdate;
+    }else{
+        if (cdate.indexOf("T") > -1) {
+           cdate = cdate.split("T");
+           cdate = cdate[0]
+         }
+        cdate = cdate.split("-");
+        var stDate = cdate[2] + "/" + cdate[1] + "/" + cdate[0];
+        return stDate;
+
+    }
+    
 }
 module.exports = mainHandler
