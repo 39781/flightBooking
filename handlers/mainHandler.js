@@ -125,7 +125,7 @@ mainHandler.flightBooking = function(reqBody){
 					speech:"Please select flight to book?"
 				}],
 				response.card ={			
-						"title": "flight available from "+params.departure + " to "+params.destination+ ", Flight No : "+flight["Flight No"],
+						"title": "flight available from "+params.departure + " to "+params.destination+ ", Flight No : "+flightsInfo["Flight No"],
 						"formattedText": "Click below chip to book flight ",
 				}
 				response.chips=[{
