@@ -8,7 +8,7 @@ var mainHandler = {};
 mainHandler.process = function(reqBody){
 	return new Promise((resolve, reject)=>{
 		console.log('action',reqBody.queryResult.action);
-		mainHanler[reqBody.queryResult.action](reqBody)
+		mainHandler[reqBody.queryResult.action](reqBody)
 		.then((resp)=>{
 			resolve(resp);
 		})
