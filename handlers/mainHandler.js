@@ -129,9 +129,9 @@ mainHandler.flightBooking = function(reqBody){
 						"formattedText": "Click below chip to book flight ",
 				}
 				response.chips=[{
-					title:"Click to Book flight no : "+flightsInfo[0]["Flight No"],
+					title:"Book flight no : "+flightsInfo[0]["Flight No"],
 					type:"",
-					postback:"Click to Book flignt no : "+flightsInfo[0]["Flight No"]
+					postback:"Book flignt no : "+flightsInfo[0]["Flight No"]
 				}]
 			}else{
 				response={
