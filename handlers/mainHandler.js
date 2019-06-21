@@ -20,10 +20,11 @@ mainHandler.process = function(reqBody){
 
 mainHandler.flightBooking = function(reqBody){
 	return new Promise((resolve, reject)=>{
-			console.log('insode flight Booking');
+			console.log('inside flight Booking');
 		let response = {};
 		let flightsInfo = [...config.flightDetails];
 		let params = reqBody.queryResult.parameters;
+		console.log(params);
 		if(params.dateOfTravel.length<=0){
 			response = {
 				simpleText:[{
