@@ -19,6 +19,7 @@ mainHandler.process = function(reqBody){
 
 mainHandler.flightBooking = function(reqBody){
 	return new Promise((resolve, reject)=>{
+			
 		let response = {
 			simpleText:[{
 				text:"Please select flight to book?",
@@ -27,63 +28,103 @@ mainHandler.flightBooking = function(reqBody){
 		}
 		let flightsInfo = [...config.flightDetails];
 		let params = reqBody.queryResult.parameters;
-		for(let i in flightsInfo){
-			
-			if(flightsInfo[i].From  == params.departure&&flightsInfo[i].To == params.destination){
-				flightsInfo.splice(i,1);
+		if(params.dateOfTravel.length<=0){
+			response = {
+				simpleText:[{
+					text:"Please provide date of travel?",
+					speech:"Please provide date of travel?"
+				}]
 			}
-		}
-		if(flightsInfo.length>1){
-			response.list = {
-				title:"List of flight available from "+params.departure + " to "+params.destination,
-				items:[]
+		}else if(params.departure.length<=0){
+			response = {
+				simpleText:[{
+					text:"Please select departure?",
+					speech:"Please select departure?"
+				}],
+				chips:[]
 			}
-			for(let flight of flightsInfo){
-				let key = params.departure + " - "+params.destination;
-				items.push({								  
-					"postback": key,
-					"synonyms": [
-						key
-					],
-					"title": key,					  
-					"subTitle": "Click to Book",
-					//Location : "+body.value[0].location.displayName+" Date : "+startDate.toLocaleDateString()+"  \nStart Time : "+startDate.toLocaleTimeString()+"  \nEnd Time : "+endDate.toLocaleTimeString()+"  \nLocation : " +meeting.location.displayName
+			for(let flight of flightsInfo){	
+				response.chips.push({
+					title:flight.From,
+					type:"",
+					postback:flight.From
 				})
 			}
-		}else if(flightsInfo.length){
-			response.card ={			
-					"title": "flight available from "+params.departure + " to "+params.destination,
-					"formattedText": "Click below chip to book flight ",
-			}
-			response.chips=[{
-				title:"Click to Book",
-				type:"",
-				postback:"Click to Book"
-			}]
-		}else{
-			response={
-				simpleText : [{
-					"text":"Sorry Currently flight not available from "+params.departure + " to "+params.destination,
-					"speech":"Sorry Currently flight not available from "+params.departure + " to "+params.destination
+		}else if(params.dateOfTravel.length<=0){
+			response = {
+				simpleText:[{
+					text:"Please select departure?",
+					speech:"Please select departure?"
 				}],
-				chips:[
-					{
-						postback:"Booking Flights",
-						type:"",
-						title:"Booking Flights"
-					},
-					{
-						postback:"Cancel Flights",
-						type:"",
-						title:"Cancel Flights"
-					}
-				]
+				chips:[]
 			}
-			for(let context of reqBody.queryResult.outputContexts){
-				context.lifespanCount = 0;
+			for(let flight of flightsInfo){	
+				response.chips.push({
+					title:flight.From,
+					type:"",
+					postback:flight.From
+				})
 			}
-			response.contextOut = reqBody.queryResult.outputContexts;
+		}else {
+			for(let i in flightsInfo){
+			
+				if(flightsInfo[i].From  == params.departure&&flightsInfo[i].To == params.destination){
+					flightsInfo.splice(i,1);
+				}
+			}
+			if(flightsInfo.length>1){
+				response.list = {
+					title:"List of flight available from "+params.departure + " to "+params.destination,
+					items:[]
+				}
+				for(let flight of flightsInfo){
+					let key = params.departure + " - "+params.destination;
+					items.push({								  
+						"postback": key,
+						"synonyms": [
+							key
+						],
+						"title": key,					  
+						"subTitle": "Click to Book",
+						//Location : "+body.value[0].location.displayName+" Date : "+startDate.toLocaleDateString()+"  \nStart Time : "+startDate.toLocaleTimeString()+"  \nEnd Time : "+endDate.toLocaleTimeString()+"  \nLocation : " +meeting.location.displayName
+					})
+				}
+			}else if(flightsInfo.length){
+				response.card ={			
+						"title": "flight available from "+params.departure + " to "+params.destination,
+						"formattedText": "Click below chip to book flight ",
+				}
+				response.chips=[{
+					title:"Click to Book",
+					type:"",
+					postback:"Click to Book"
+				}]
+			}else{
+				response={
+					simpleText : [{
+						"text":"Sorry Currently flight not available from "+params.departure + " to "+params.destination,
+						"speech":"Sorry Currently flight not available from "+params.departure + " to "+params.destination
+					}],
+					chips:[
+						{
+							postback:"Booking Flights",
+							type:"",
+							title:"Booking Flights"
+						},
+						{
+							postback:"Cancel Flights",
+							type:"",
+							title:"Cancel Flights"
+						}
+					]
+				}
+				for(let context of reqBody.queryResult.outputContexts){
+					context.lifespanCount = 0;
+				}
+				response.contextOut = reqBody.queryResult.outputContexts;
+			}
 		}
+		
 		resolve(response);
 	})
 }
