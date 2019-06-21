@@ -67,11 +67,12 @@ mainHandler.flightBooking = function(reqBody){
 		}else {
 			console.log("getting flights information");
 			for(let i in flightsInfo){
-			
+				console.log(flightsInfo[i].From  , params.departure,flightsInfo[i].To ,params.destination)
 				if(flightsInfo[i].From  == params.departure&&flightsInfo[i].To == params.destination){
 					flightsInfo.splice(i,1);
 				}
 			}
+			console.log(flighsInfo);
 			if(flightsInfo.length>1){
 				response.list = {
 					title:"List of flight available from "+params.departure + " to "+params.destination,
