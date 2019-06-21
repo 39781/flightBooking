@@ -22,7 +22,7 @@ mainHandler.flightBooking = function(reqBody){
 	return new Promise((resolve, reject)=>{
 			console.log('inside flight Booking');
 		let response = {};
-		let flightsInfo = [...config.flightDetails];
+		let flightsDetails = [...config.flightDetails];
 		let params = reqBody.queryResult.parameters;
 		console.log(params);
 		if(params.dateOfTravel.length<=0){
@@ -40,7 +40,7 @@ mainHandler.flightBooking = function(reqBody){
 				}],
 				chips:[]
 			}
-			for(let flight of flightsInfo){	
+			for(let flight of flightsDetails){	
 				response.chips.push({
 					title:flight.From,
 					type:"",
@@ -55,7 +55,7 @@ mainHandler.flightBooking = function(reqBody){
 				}],
 				chips:[]
 			}
-			for(let flight of flightsInfo){	
+			for(let flight of flightsDetails){	
 				if(params.departure != flight.To){
 					response.chips.push({
 						title:flight.To,
@@ -67,14 +67,12 @@ mainHandler.flightBooking = function(reqBody){
 		}else {
 
 			console.log("getting flights information");
-			console.log(flightsInfo.length);
-			for(let i in flightsInfo){
+			flightsInfo = [];
+			for(let i in flightsDetails){
 				
 				
-				if(flightsInfo[i].From  != params.departure&&flightsInfo[i].To != params.destination){
-					console.log(flightsInfo[i].From  , params.departure,flightsInfo[i].To ,params.destination);
-
-					flightsInfo.splice(i,1);
+				if(flightsDetails[i].From  == params.departure&&flightsDetails[i].To == params.destination){
+					flightsInfo.push(flightsDetails[i]);
 				}
 			}
 			console.log(flightsInfo.length);
