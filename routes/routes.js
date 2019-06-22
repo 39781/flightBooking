@@ -39,8 +39,13 @@ var checkAuthorization = function(req, res, next){
 router.post('/webhook',  checkAuthorization, function (req, res) {		
 	//console.log(JSON.stringify(req.body));
 	processRequest.process(req.body)				
-	.then(function(result){															
-		return responses[result.src].generateResponse(result.resp);				 																					// from generic response
+	.then(function(result){		
+		if(result.followupEventInput){
+			return result;
+		}else{
+			return responses[result.src].generateResponse(result.resp);				 																					// from generic response
+		}									
+		
 	})
 	.then(function(result){														
 		res.status(200);
