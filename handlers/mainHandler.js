@@ -202,10 +202,12 @@ mainHandler.defaultFallbackIntent = function(reqBody){
 
 mainHandler.FlightBookingConfirmationYes = function(reqBody){
 	return new Promise((resolve, reject)=>{
-		console.log(JSON.stringify(reqBody.queryResult.outputContexts));
+		//console.log(JSON.stringify(reqBody.queryResult.outputContexts));
 		for(let context of reqBody.queryResult.outputContexts){
 			if(context.name.indexOf("flightbookingconfirmation")>=0){
-				resolve({
+				console.log(JSON.stringify());
+				
+				resolve({src:reqBody.originalDetectIntentRequest.source,resp:{
 					simpleText:[{
 						text:"Your flight booking confirmed",
 						speech:"Your flight booking confirmed"
@@ -233,7 +235,7 @@ mainHandler.FlightBookingConfirmationYes = function(reqBody){
 			}
 		};
 
-	});
+	}});
 }
 function dateConvert(cdate) {
 
