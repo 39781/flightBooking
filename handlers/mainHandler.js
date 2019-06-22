@@ -203,6 +203,36 @@ mainHandler.defaultFallbackIntent = function(reqBody){
 mainHandler.FlightBookingConfirmationYes = function(reqBody){
 	return new Promise((resolve, reject)=>{
 		console.log(JSON.stringify(reqBody.queryResult.outputContexts));
+		for(let context of reqBody.queryResult.outputContexts){
+			if(context.name.indexOf("flightbookingconfirmation")>=0){
+				resolve({
+					simpleText:[{
+						text:"Your flight booking confirmed",
+						speech:"Your flight booking confirmed"
+					}],
+					card : {			
+						"title": "Booking No : BHP"+Math.floor(Math.random()*90000) + 10000,
+						"subTitle":context.parameters.option,
+						"formattedText": "**Date** "+context.parameters.dateOfTravel+"\r\n  \n*Departure"+context.parameters.departure+"\r\n  \n**Destination : "+context.parameters.destination+"\r\n  \n**Name** : "+context.parameters.name+"\r\n  \nMobile : "+context.parameters.mobile+"\r\n  \nId Number : "+context.parameters.idNumber
+					},
+					chips:[
+						{
+							postback:"Booking Flights",
+							type:"",
+							title:"Booking Flights"
+						},
+						{
+							postback:"Cancel Flights",
+							type:"",
+							title:"Cancel Flights"
+						}
+					]
+				});
+				
+				break;
+			}
+		};
+
 	});
 }
 function dateConvert(cdate) {
