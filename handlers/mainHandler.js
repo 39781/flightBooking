@@ -202,7 +202,7 @@ mainHandler.defaultFallbackIntent = function(reqBody){
 
 mainHandler.FlightBookingConfirmationYes = function(reqBody){
 	return new Promise((resolve, reject)=>{
-		console.log(JSON.stringify(reqBody.outputContexts));
+		console.log(JSON.stringify(reqBody.queryResult.outputContexts));
 	});
 }
 function dateConvert(cdate) {
