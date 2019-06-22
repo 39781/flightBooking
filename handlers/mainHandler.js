@@ -214,7 +214,7 @@ mainHandler.FlightBookingConfirmationYes = function(reqBody){
 					card : {			
 						"title": "Booking No : BHP"+Math.floor(Math.random()*90000) + 10000,
 						"subTitle":context.parameters.option,
-						"formattedText": "**Date** "+context.parameters.dateOfTravel+"\r\n  \n**Departure** : "+context.parameters.departure+"\r\n  \n**Destination** : "+context.parameters.destination+"\r\n  \n**Name** : "+context.parameters.name+"\r\n  \nMobile : "+context.parameters.mobile+"\r\n  \nId Number : "+context.parameters.idNumber
+						"formattedText": "**Date** "+context.parameters.dateOfTravel+"\r\n  \n**Departure** : "+context.parameters.departure+"\r\n  \n**Destination** : "+context.parameters.destination+"\r\n  \n**Name** : "+context.parameters.name+"\r\n  \n**Mobile** : "+context.parameters.mobile+"\r\n  \n**Id Number** : "+context.parameters.IdNumber
 					},
 					chips:[
 						{
