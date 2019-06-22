@@ -179,6 +179,18 @@ mainHandler.flightBooking = function(reqBody){
 mainHandler.flightBookingInformation = function(reqBody){
 	return new Promise((resolve, reject)=>{
 		console.log(JSON.stringify(reqBody));
+		for(let context of reqBody.queryResult.outputContexts){
+			if(context.name.indexOf('flightbooking-followup')>=0){
+				reqBody.parameters = Object.assign(reqBody.parameters,context.parameters);
+			}
+		}
+		resolve({
+			followupEventInput:{
+				name:"flightBookingConfirmation",
+				parameters:reqBody.parameters
+			}
+		})
+		
 	});
 }
 mainHandler.defaultFallbackIntent = function(reqBody){
