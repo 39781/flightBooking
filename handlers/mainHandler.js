@@ -178,12 +178,13 @@ mainHandler.flightBooking = function(reqBody){
 
 mainHandler.flightBookingInformation = function(reqBody){
 	return new Promise((resolve, reject)=>{
-		console.log(JSON.stringify(reqBody));
+		//console.log(JSON.stringify(reqBody));
 		for(let context of reqBody.queryResult.outputContexts){
 			if(context.name.indexOf('flightbooking-followup')>=0){
 				reqBody.queryResult.parameters = Object.assign(reqBody.queryResult.parameters,context.parameters);
 			}
 		}
+		console.log(reqBody.queryResult.parameters);
 		resolve({
 			followupEventInput:{
 				name:"flightBookingConfirmation",
