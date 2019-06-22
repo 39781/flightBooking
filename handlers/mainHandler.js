@@ -181,13 +181,13 @@ mainHandler.flightBookingInformation = function(reqBody){
 		console.log(JSON.stringify(reqBody));
 		for(let context of reqBody.queryResult.outputContexts){
 			if(context.name.indexOf('flightbooking-followup')>=0){
-				reqBody.parameters = Object.assign(reqBody.parameters,context.parameters);
+				reqBody.queryResult.parameters = Object.assign(reqBody.queryResult.parameters,context.parameters);
 			}
 		}
 		resolve({
 			followupEventInput:{
 				name:"flightBookingConfirmation",
-				parameters:reqBody.parameters
+				parameters:reqBody.queryResult.parameters;
 			}
 		})
 		
