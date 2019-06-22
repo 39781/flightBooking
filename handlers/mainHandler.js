@@ -204,7 +204,7 @@ mainHandler.FlightBookingConfirmationYes = function(reqBody){
 	return new Promise((resolve, reject)=>{
 		console.log(JSON.stringify(reqBody.queryResult.outputContexts));
 		for(let context of reqBody.queryResult.outputContexts){
-			if(context.name.indexOf("flightbookingconfirmation")>=0){
+			if(context.name.replace(/-/ig,'').match(/(^|\W)flightbookingconfirmation($|\W)/ig)){
 				console.log(JSON.stringify(context.parameters));
 				let response = {
 					simpleText:[{
