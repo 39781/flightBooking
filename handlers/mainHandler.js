@@ -81,6 +81,11 @@ mainHandler.flightBooking = function(reqBody){
 					postback:"Fastest"
 				},
 				{
+					title:"Direct",
+					type:"",
+					postback:"Direct"
+				},
+				{
 					title:"All",
 					type:"",
 					postback:"All"
@@ -93,7 +98,15 @@ mainHandler.flightBooking = function(reqBody){
 			params.dateOfTravel = dateConvert(params.dateOfTravel);
 			for(let i in flightsDetails){
 				if(params.dateOfTravel == flightsDetails[i].Date&&flightsDetails[i].From  == params.departure&&flightsDetails[i].To == params.destination){
-					flightsInfo.push(flightsDetails[i]);
+					
+					if(flightsDetails[i].Connection == "True"&&filterCriteria == 'Cheaper'){
+						flightsInfo.push(flightsDetails[i]);
+					}else if(flightsDetails[i].Connection == "False"&&["Direct","Fastest"].indexOf(params.filterCriteria)>=0){
+						flightsInfo.push(flightsDetails[i]);
+					}else{
+						flightsInfo.push(flightsDetails[i]);
+					}
+					
 				}
 			}
 			console.log(flightsInfo.length);
@@ -164,6 +177,11 @@ mainHandler.flightBooking = function(reqBody){
 }
 
 mainHandler.flightBookingInformation = function(reqBody){
+	return new Promise((resolve, reject)=>{
+		console.log(JSON.stringify(reqBody.outputContexts));
+	});
+}
+mainHandler.defaultFallbackIntent = function(reqBody){
 	return new Promise((resolve, reject)=>{
 		console.log(JSON.stringify(reqBody.outputContexts));
 	});
