@@ -229,7 +229,7 @@ mainHandler.FlightBookingConfirmationYes = function(reqBody){
 							title:"Cancel Flights"
 						}
 					]
-				});
+				}});
 				
 				break;
 			}
