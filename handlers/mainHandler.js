@@ -99,7 +99,7 @@ mainHandler.flightBooking = function(reqBody){
 			for(let i in flightsDetails){
 				if(params.dateOfTravel == flightsDetails[i].Date&&flightsDetails[i].From  == params.departure&&flightsDetails[i].To == params.destination){
 					
-					if(flightsDetails[i].Connection == "True"&&filterCriteria == 'Cheaper'){
+					if(flightsDetails[i].Connection == "True"&&params.filterCriteria == 'Cheaper'){
 						flightsInfo.push(flightsDetails[i]);
 					}else if(flightsDetails[i].Connection == "False"&&["Direct","Fastest"].indexOf(params.filterCriteria)>=0){
 						flightsInfo.push(flightsDetails[i]);
