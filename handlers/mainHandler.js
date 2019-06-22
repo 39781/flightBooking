@@ -206,8 +206,7 @@ mainHandler.FlightBookingConfirmationYes = function(reqBody){
 		for(let context of reqBody.queryResult.outputContexts){
 			if(context.name.indexOf("flightbookingconfirmation")>=0){
 				console.log(JSON.stringify());
-				
-				resolve({src:reqBody.originalDetectIntentRequest.source,resp:{
+				let response = {
 					simpleText:[{
 						text:"Your flight booking confirmed",
 						speech:"Your flight booking confirmed"
@@ -229,13 +228,14 @@ mainHandler.FlightBookingConfirmationYes = function(reqBody){
 							title:"Cancel Flights"
 						}
 					]
-				}});
+				};
+				resolve({src:reqBody.originalDetectIntentRequest.source,resp:response});
 				
 				break;
 			}
 		};
 
-	}});
+	});
 }
 function dateConvert(cdate) {
 
