@@ -187,7 +187,7 @@ mainHandler.flightBookingInformation = function(reqBody){
 		resolve({
 			followupEventInput:{
 				name:"flightBookingConfirmation",
-				parameters:reqBody.queryResult.parameters;
+				parameters:reqBody.queryResult.parameters
 			}
 		})
 		
