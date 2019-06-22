@@ -202,7 +202,7 @@ mainHandler.defaultFallbackIntent = function(reqBody){
 
 mainHandler.FlightBookingConfirmationYes = function(reqBody){
 	return new Promise((resolve, reject)=>{
-		//console.log(JSON.stringify(reqBody.queryResult.outputContexts));
+		console.log(JSON.stringify(reqBody.queryResult.outputContexts));
 		for(let context of reqBody.queryResult.outputContexts){
 			if(context.name.indexOf("flightbookingconfirmation")>=0){
 				console.log(JSON.stringify(context.parameters));
