@@ -205,7 +205,7 @@ mainHandler.FlightBookingConfirmationYes = function(reqBody){
 		//console.log(JSON.stringify(reqBody.queryResult.outputContexts));
 		for(let context of reqBody.queryResult.outputContexts){
 			if(context.name.indexOf("flightbookingconfirmation")>=0){
-				console.log(JSON.stringify());
+				console.log(JSON.stringify(context.parameters));
 				let response = {
 					simpleText:[{
 						text:"Your flight booking confirmed",
@@ -214,7 +214,7 @@ mainHandler.FlightBookingConfirmationYes = function(reqBody){
 					card : {			
 						"title": "Booking No : BHP"+Math.floor(Math.random()*90000) + 10000,
 						"subTitle":context.parameters.option,
-						"formattedText": "**Date** "+context.parameters.dateOfTravel+"\r\n  \n*Departure"+context.parameters.departure+"\r\n  \n**Destination : "+context.parameters.destination+"\r\n  \n**Name** : "+context.parameters.name+"\r\n  \nMobile : "+context.parameters.mobile+"\r\n  \nId Number : "+context.parameters.idNumber
+						"formattedText": "**Date** "+context.parameters.dateOfTravel+"\r\n  \n**Departure** : "+context.parameters.departure+"\r\n  \n**Destination** : "+context.parameters.destination+"\r\n  \n**Name** : "+context.parameters.name+"\r\n  \nMobile : "+context.parameters.mobile+"\r\n  \nId Number : "+context.parameters.idNumber
 					},
 					chips:[
 						{
