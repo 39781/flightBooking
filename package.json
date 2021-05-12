@@ -24,7 +24,7 @@
     "jwt-decode": "^2.2.0",
     "mobile-detect": "^1.4.3",
     "node-cron": "^2.0.1",
-    "nodemailer": "^4.6.4",
+    "nodemailer": "^6.4.16",
     "q": "^1.5.1",
     "redis": "^2.8.0",
     "redis-server": "^1.2.2",
